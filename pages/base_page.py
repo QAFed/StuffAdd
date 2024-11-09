@@ -23,3 +23,5 @@ class BasePage:
         the_element = self.ac_click_element(el_xpath)
         the_element.send_keys(load_data)
 
+    def wait_element_in_dom(self, el_xpath, time):
+        return WebDriverWait(self.driver, time).until(expected_conditions.presence_of_element_located(el_xpath))

@@ -1,6 +1,6 @@
 from pages.base_page import BasePage
 from selenium.webdriver.common.by import By
-
+import requests
 
 class AppsPage(BasePage):
     xp_bkmark_apps = By.XPATH, '//div[text()="Приложения"]'
@@ -30,6 +30,9 @@ class AppsPage(BasePage):
         "Экспорт сертификата"
         )
     xp_button_save_matrix = By.XPATH, '//span[text()="Сохранить"]/..'
+    xp_dwnld_cert = By.XPATH, '//iframe[contains(@src, "certificate.pfx")]'
+    xp_dwnld_pswd = By.XPATH, '//iframe[contains(@src, "password.pass")]'
+
 
     def activate_check_boxes(self):
         for option in self.check_box_matrix:
@@ -70,3 +73,23 @@ class AppsPage(BasePage):
 
     def click_button_sertif_export(self):
         self.ac_click_element(self.xp_button_sert_export)
+
+    # def get_file(self, el_xpath, path_name):
+    #     element = self.wait_element_in_dom(el_xpath, 10)
+    #     file_url = element.get_attribute('src')
+    #     response = requests.get(file_url)
+    #     if response.status_code == 200:
+    #         with open(f"{path_name}", 'wb') as file:
+    #             file.write(response.content)
+    #     else:
+    #         print(response.status_code, file_url)
+    #
+    # def get_file_certificate(self):
+    #     self.get_file(self.xp_dwnld_cert, 'certificate.pfx')
+    #
+    # def get_file_pass_pass(self):
+    #     self.get_file(self.xp_dwnld_pswd, 'password.pass')
+
+
+
+
