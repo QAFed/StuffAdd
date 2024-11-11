@@ -1,6 +1,6 @@
 from pages.base_page import BasePage
 from selenium.webdriver.common.by import By
-import requests
+# import requests
 
 class AppsPage(BasePage):
     xp_bkmark_apps = By.XPATH, '//div[text()="Приложения"]'
@@ -32,6 +32,7 @@ class AppsPage(BasePage):
     xp_button_save_matrix = By.XPATH, '//span[text()="Сохранить"]/..'
     xp_dwnld_cert = By.XPATH, '//iframe[contains(@src, "certificate.pfx")]'
     xp_dwnld_pswd = By.XPATH, '//iframe[contains(@src, "password.pass")]'
+    xp_delete_ok = By.XPATH, '//span[text()="Ok"]'
 
 
     def activate_check_boxes(self):
@@ -43,6 +44,16 @@ class AppsPage(BasePage):
         button_delete = self.get_element_after_visible(self.xp_button_delete, 2)
         if 'disabled' in button_delete.get_attribute('class'):
             self.ac_click_element(self.xp_adding_string)
+
+    def check_n_delete_past_string(self):
+        while True:
+            try:
+                self.ac_click_element(self.xp_adding_string)
+                self.ac_click_element(self.xp_button_delete)
+                self.ac_click_element(self.xp_delete_ok)
+            except:
+                break
+
 
     def click_bm_apps(self):
         self.ac_click_element(self.xp_bkmark_apps)

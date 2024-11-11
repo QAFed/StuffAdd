@@ -14,7 +14,7 @@ class BasePage:
         return WebDriverWait(self.driver, time).until(expected_conditions.visibility_of_element_located(el_xpath))
 
     def ac_click_element(self, el_xpath):
-        the_element = self.get_element_after_visible(el_xpath, 10)
+        the_element = self.get_element_after_visible(el_xpath, 3)
         actions = ActionChains(self.driver)
         actions.click(the_element).perform()
         return the_element
