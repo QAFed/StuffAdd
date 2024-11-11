@@ -1,19 +1,31 @@
+import os
+import shutil
 import time
 
 from pages.login_page import LoginPage
 from pages.apps_page import AppsPage
 from selenium import webdriver
-from selenium.webdriver.chrome.service import Service as ChromeService
-from webdriver_manager.chrome import ChromeDriverManager
+# from selenium.webdriver.chrome.service import Service as ChromeService
+# from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.firefox.service import Service as FirefoxService
 from webdriver_manager.firefox import GeckoDriverManager
-from selenium.webdriver.chrome.options import Options
-
+# from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.firefox.options import Options
 
 
 if __name__ == "__main__":
+    download_dir = 'd:\\oss_sert'
+    if os.path.exists(download_dir):
+        shutil.rmtree(download_dir)
+    os.makedirs(download_dir)
+
+    profile = webdriver.FirefoxProfile()
+    profile.set_preference("browser.download.dir", download_dir)
+    profile.set_preference("browser.download.folderList", 2)
+    options = Options()
+    options.profile = profile
     service = FirefoxService(GeckoDriverManager().install())
-    driver = webdriver.Firefox(service=service)
+    driver = webdriver.Firefox(service=service, options=options)
 
     # service = ChromeService(ChromeDriverManager().install())
     # options = Options()
@@ -36,16 +48,13 @@ if __name__ == "__main__":
     apps_page.input_pass()
     apps_page.click_add_button_save()
     apps_page.enable_add_string()
-    time.sleep(2)
     apps_page.activate_check_boxes()
-    time.sleep(2)
     apps_page.click_button_save_matrix()
     apps_page.enable_add_string()
     apps_page.click_button_sertif()
     apps_page.click_button_create_sertif()
-    time.sleep(5)
     apps_page.click_button_sertif_export()
-    time.sleep(5)
     # apps_page.get_file_certificate()
     # apps_page.get_file_pass_pass()
-    # time.sleep(100)
+    time.sleep(10)
+    driver.quit()

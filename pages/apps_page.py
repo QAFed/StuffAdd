@@ -74,6 +74,8 @@ class AppsPage(BasePage):
     def click_button_sertif_export(self):
         self.ac_click_element(self.xp_button_sert_export)
 
+
+
     # def get_file(self, el_xpath, path_name):
     #     element = self.wait_element_in_dom(el_xpath, 10)
     #     file_url = element.get_attribute('src')
