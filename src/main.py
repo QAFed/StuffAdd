@@ -50,7 +50,6 @@ if __name__ == "__main__":
     # apps_page.click_button_sertif_export()
     # time.sleep(10)
     # driver.quit()
-    mody_files = ModyFile()
-    mody_files.activate_oss_in_app_yaml()
+
 
 
