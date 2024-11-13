@@ -26,12 +26,12 @@ class SshConnect:
         output = ""
         while True:
             if self.shell.recv_ready():
-                response = self.shell.recv(1024).decode('utf-8')
+                response = self.shell.recv(1024).decode('utf-8', errors ='replace')
                 output += response
-                print(f'RESPONSE {response}', end='')
+                print(response, end='')
                 time.sleep(1)
 
-                if output.endswith("$ ") or output.endswith("# "):
+                if output.endswith("$ ") or output.endswith("# ") or output.endswith(f"{ConfData.login_ssh}: "):
                     break
 
 if __name__ == '__main__':
@@ -41,7 +41,7 @@ if __name__ == '__main__':
     ssh.send_command('hostname -I')
     ssh.send_command('sudo -s')
     ssh.send_command(ConfData.login_ssh)
-    ssh.send_command('apt update -y')
+    ssh.send_command('apt update')
     time.sleep(5)
     ssh.stop_shell()
     ssh.ssh_disconnect()
