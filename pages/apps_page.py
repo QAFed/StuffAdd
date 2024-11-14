@@ -12,7 +12,7 @@ class AppsPage(BasePage):
     xp_add_descript_input = By.XPATH, '//div[contains(@style,"top: 60px;")]/input'
     xp_add_pass_sert_input = By.XPATH, '//div[contains(@style,"top: 90px;")]/input'
     xp_add_button_save = By.XPATH, '//div[contains(@style,"top: 30px;")]/input/../../../..//span[text()="Сохранить"]'
-    xp_button_sert_create = By.XPATH, '//span[text()="Создать"]'
+    xp_button_sert_create = By.XPATH, '//span[text()="Создать"]/../..'
     xp_button_sert_export = By.XPATH, '//span[text()="Экспорт"]'
     check_box_matrix = (
         "Просмотр справочников",

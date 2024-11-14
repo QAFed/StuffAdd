@@ -31,7 +31,7 @@ class SshConnect:
                 print(response, end='')
                 time.sleep(1)
 
-                if output.endswith("$ ") or output.endswith("# ") or output.endswith(f"{ConfData.login_ssh}: "):
+                if output.endswith("$ ") or output.endswith("# ") or output.endswith(f"{ConfData.login_ssh}: ") or output.endswith("password: "):
                     break
 
 if __name__ == '__main__':
@@ -40,8 +40,15 @@ if __name__ == '__main__':
     ssh.start_shell()
     ssh.send_command('hostname -I')
     ssh.send_command('sudo -s')
-    ssh.send_command(ConfData.login_ssh)
-    ssh.send_command('apt update')
+    ssh.send_command(ConfData.pass_ssh)
+    ssh.send_command(f'scp -o StrictHostKeyChecking=no {ConfData.main_login}@{ConfData.main_ip}:"{ConfData.ssh_sert_temp_folder}/password.pass" .')
+    ssh.send_command(ConfData.main_pass)
+    ssh.send_command(f'scp -o StrictHostKeyChecking=no {ConfData.main_login}@{ConfData.main_ip}:"{ConfData.ssh_sert_temp_folder}/certificate.pfx" .')
+    ssh.send_command(ConfData.main_pass)
+    ssh.send_command("rm -r /srv/pl-services/postlink-service/oss")
+    ssh.send_command("mkdir /srv/pl-services/postlink-service/oss")
+    ssh.send_command("mv password.pass /srv/pl-services/postlink-service/oss/")
+    ssh.send_command("mv certificate.pfx /srv/pl-services/postlink-service/oss/")
     time.sleep(5)
     ssh.stop_shell()
     ssh.ssh_disconnect()
