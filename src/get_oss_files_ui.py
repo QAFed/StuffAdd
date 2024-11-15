@@ -51,6 +51,3 @@ if __name__ == "__main__":
     apps_page.click_button_sertif_export()
     time.sleep(10)
     driver.quit()
-
-
-

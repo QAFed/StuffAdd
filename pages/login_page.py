@@ -20,4 +20,3 @@ class LoginPage(BasePage):
 
     def click_butt_login(self):
         self.ac_click_element(self.xp_button_login)
-
