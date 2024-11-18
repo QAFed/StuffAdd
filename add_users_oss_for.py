@@ -25,8 +25,11 @@ if __name__ == "__main__":
     users_page = UsersPage(driver)
     users_page.click_bm_users()
     users_plan = (
-        ('Voskresenskii', 'Ivan', 'Nikolaevich', '12-12-1980', '+79019019191', 'division', 'job_name'),
-        ('Starshikova', 'Margarita', 'Tikhonovna', '10-10-1985', '+79029029292', 'division', 'job_name'),
+        ('Воскресенский', 'Иван', 'Николаевич', '12-12-1980', '+79119119191', 'division', 'job_name'),
+        ('Стрельникова', 'Маргарита', 'Тихоновна', '10-10-1985', '+79129129292', 'division', 'job_name'),
+        ('Воропаев', 'Егор', 'Игнатьевич', '09-09-1999', '+79139139393', 'division', 'job_name'),
+        ('Денисова', 'Виктория', 'Юрьевна', '08-08-1999', '+79149149494', 'division', 'job_name'),
+        ('Абсолютов', 'Максим', 'Михайлович', '07-07-1999', '+79159159595', 'division', 'job_name')
     )
     time.sleep(1)
     for user_list in users_plan:
@@ -37,9 +40,5 @@ if __name__ == "__main__":
         users_page.add_tell(user_list)
         users_page.add_job(user_list)
 
-
-    time.sleep(10)
-
-
-
-
+    time.sleep(1)
+    driver.quit()

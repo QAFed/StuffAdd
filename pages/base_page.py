@@ -1,6 +1,7 @@
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.common.action_chains import ActionChains
+from selenium.webdriver.support.ui import Select
 
 
 class BasePage:
@@ -25,3 +26,8 @@ class BasePage:
 
     def wait_element_in_dom(self, el_xpath, time):
         return WebDriverWait(self.driver, time).until(expected_conditions.presence_of_element_located(el_xpath))
+
+    def get_n_select(self, el_xpath, choice_name):
+        the_element = self.get_element_after_visible(el_xpath, 3)
+        select = Select(the_element)
+        select.select_by_visible_text(choice_name)
