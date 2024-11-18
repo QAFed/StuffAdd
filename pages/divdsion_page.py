@@ -16,7 +16,10 @@ class DivisPage(BasePage):
     xp_input_count_job = By.XPATH, '//div[contains(@style, "top: 60px;")]/input'
     xp_button_save_job = By.XPATH, '//span[text()="Сохранить"]'
 
-    def add_devision(self, code, name, desc):
+    def click_bm_divis(self):
+        self.ac_click_element(self.xp_bkmark_didvs)
+
+    def add_division(self, code, name, desc):
         self.ac_click_element(self.xp_button_add_division)
         self.fill_field(self.xp_input_code_divis, code)
         self.fill_field(self.xp_input_nane_divis, name)
